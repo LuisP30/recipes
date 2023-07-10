@@ -21,9 +21,9 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='core/covers/%Y/%m/%d/')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True) #Se a categoria for apagada o valor desse campo será nulo
+    cover = models.ImageField(upload_to='core/covers/%Y/%m/%d/')#blank=True, default=''
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+    #Se a categoria for apagada o valor desse campo será nulo
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-
     def __str__(self):
         return self.title

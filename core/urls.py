@@ -4,7 +4,8 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
-    path('', views.home, name="recipes-home"),
-    path('recipes/<int:id>/', views.recipe, name="recipes-recipe"),
+    path('', views.home, name="home"),
+    path('recipes/category/<int:category_id>/', views.category, name="category"),
+    path('recipes/<int:id>/', views.recipe, name="recipe"),
     # O termo "slug" se refere às URLs que descrevem o conteúdo que carregam.
 ]

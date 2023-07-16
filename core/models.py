@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
-# Create your models here.
-# Um model representa uma tabela na base de dados
 
+# Um model representa uma tabela na base de dados
 class Category(models.Model):
     name = models.CharField(max_length=65)
     def __str__(self):
@@ -21,7 +20,7 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='core/covers/%Y/%m/%d/')#blank=True, default=''
+    cover = models.ImageField(upload_to='core/covers/%Y/%m/%d/', blank=True, default=' ') # noqa
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None)
     #Se a categoria for apagada o valor desse campo será nulo
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

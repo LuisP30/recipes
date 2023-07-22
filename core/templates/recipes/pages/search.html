@@ -1,0 +1,23 @@
+{% extends 'global/base.html' %}
+
+{% block title %}{{page_title}}{% endblock title %}
+
+{% block content %}
+
+<div class="main-content main-content-list container">
+    {% for recipe in recipes %}
+        {% include 'recipes/partials/recipe.html' %}
+    {% empty %}
+    <div class="center m-y">
+        <h1>No recipes found here</h1>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+<!--
+   Está é a página principal do meu site, onde está estendendo/herdando o arquivo HTML base
+   do projeto e consequentemente recebendo configurações e elementos que estão definidos
+   como padrão. Onde há excessão de conteúdo, ou seja, o conteúdo exclusivo desta página
+   fica entre os blocks
+-->

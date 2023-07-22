@@ -34,16 +34,16 @@ class CoreTestBase(TestCase):
         preparation_time = 10, # noqa
         preparation_time_unit = 'Minutos', # noqa
         servings = 5, # noqa
-        servings_time_unit = 'Porções', # noqa
+        servings_unit = 'Porções', # noqa
         preparation_steps = 'Recipe Preparation Steps', # noqa
         preparation_steps_is_html = False, # noqa
-        is_published =True,  # noqa
+        is_published = True,  # noqa
     ):
         if category_data is None:
             category_data = {}
         if author_data is None:
             author_data = {}
-        
+
         return Recipe.objects.create(
             author = self.make_author(**author_data), # noqa
             category = self.make_category(**category_data), # noqa
@@ -53,7 +53,7 @@ class CoreTestBase(TestCase):
             preparation_time = preparation_time, # noqa
             preparation_time_unit = preparation_time_unit, # noqa
             servings = servings, # noqa
-            servings_time_unit = servings_time_unit, # noqa
+            servings_unit = servings_unit, # noqa
             preparation_steps = preparation_steps, # noqa
             preparation_steps_is_html = preparation_steps_is_html, # noqa
             is_published = is_published,  # noqa

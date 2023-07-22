@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('preparation_time', models.IntegerField()),
                 ('preparation_time_unit', models.CharField(max_length=65)),
                 ('servings', models.IntegerField()),
-                ('servings_time_unit', models.CharField(max_length=65)),
+                ('servings_unit', models.CharField(max_length=65)),
                 ('preparation_steps', models.TextField()),
                 ('preparation_steps_is_html', models.BooleanField(default=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

@@ -35,7 +35,6 @@ class CoreHomeViewTest(CoreTestBase): # noqa E302
         response = self.client.get(reverse('core:home'))
         self.assertIn('No recipes found', response.content.decode('utf-8'))
 
-
     def test_core_home_is_paginated(self):
         for i in range(9):
             kwargs = {'slug': f'r{i}', 'author_data': {'username': f'u{i}'}}
@@ -49,3 +48,25 @@ class CoreHomeViewTest(CoreTestBase): # noqa E302
             self.assertEqual(len(paginator.get_page(1)), 3)
             self.assertEqual(len(paginator.get_page(2)), 3)
             self.assertEqual(len(paginator.get_page(3)), 3)
+
+    def test_invalid_page_query_uses_page_one(self):
+        for i in range(8):
+            kwargs = {'slug': f'r{i}', 'author_data': {'username': f'u{i}'}}
+            self.make_recipe(**kwargs)
+
+        with patch('core.views.PER_PAGE', new=3):
+            response = self.client.get(reverse('core:home') + '?page=12A')
+            self.assertEqual(
+                response.context['recipes'].number,
+                1
+            )
+            response = self.client.get(reverse('core:home') + '?page=2')
+            self.assertEqual(
+                response.context['recipes'].number,
+                2
+            )
+            response = self.client.get(reverse('core:home') + '?page=3')
+            self.assertEqual(
+                response.context['recipes'].number,
+                3
+            )
